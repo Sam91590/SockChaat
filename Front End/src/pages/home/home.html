@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+<ion-title>
+     		 Connexion
+    	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label staked>Pseudo</ion-label>
+    <ion-input type="text" [(ngModel)]="nickname" placeholder="Nickname">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Mot de Passe:</ion-label>
+    <ion-input type="password" [(ngModel)]="mdp" placeholder="Saisir votre mot de passe"></ion-input>
+  </ion-item>
+  <button ion-button full type="submit" [disabled]="mdp === ''|| nickname === ''" (click)='connexion()'>Rejoindre en tant que {{ nickname }}</button>
+
+
+
+<button ion-button full type="submit" (click)='inscription()'>Inscription</button>
+<button ion-button type="submit" (click)='rreload()'>Reload</button>
+<button ion-button type="submit" (click)='PageContact()'>Contacte</button>
+</ion-content>

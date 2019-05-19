@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Inscription
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="inscription()" #refForm="ngForm" [formGroup]="contact_form">
+    <ion-item>
+      <ion-label stacked>
+        Pseudo:
+      </ion-label>
+    <ion-input type="text" [(ngModel)]="nickname" formControlName="nickname" placeholder="Saisir un pseudo">
+    </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!myForm.controls.nickname.valid && refForm.submitted">r
+      <ion-label stacked class="text-danger">Au moins 5 caractères requis</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label staked>Adresse Mail:</ion-label>
+      <ion-input type="email" [(ngModel)]="mail" formControlName="mail" placeholder="Saisir une adresse mail">
+
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="!myForm.controls.mail.valid && refForm.submitted">
+      <ion-label stacked class="text-danger">Veuillez saisir une adresse mail valide</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Mot de Passe:</ion-label>
+      <ion-input type="password" [(ngModel)]="mdp" formControlName="mdp" placeholder="Saisir votre mot de passe"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!myForm.controls.mdp.valid && refForm.submitted">
+      <ion-label stacked class="text-danger">Erreur - Au moins 8 caractères requis</ion-label>
+    </ion-item>
+    <button ion-button full type="submit" (click)="inscription()" [disabled]="nickname === ''|| mail === '' || mdp === ''">S'inscire</button>
+  </form>
+</ion-content>

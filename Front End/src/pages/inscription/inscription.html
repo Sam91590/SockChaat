@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Join Chat
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="inscription()" #refForm="ngForm" [formGroup]="contact_form" >
+    <ion-item>
+      <ion-label stacked>
+        Pseudo:
+      </ion-label>
+    <ion-input type="text" [(ngModel)]="nickname" formControlName="nickname" placeholder="Saisir un pseudo">
+    </ion-input>
+    </ion-item>
+
+  </form>
+</ion-content>

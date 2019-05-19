@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ContactePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Contact</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-item>
+  <ion-label>Envoyer un message à : </ion-label>
+  <ion-select [(ngModel)]="choixuser">
+    <ion-option value="0">{{test[0]}}</ion-option>
+    <ion-option value="1">{{test[1]}}</ion-option>
+    <ion-option value="2">{{test[2]}}</ion-option>
+    <ion-option value="3">{{test[3]}}</ion-option>
+    <ion-option value="4">{{test[4]}}</ion-option>
+    <ion-option value="5">{{test[5]}}</ion-option>
+    <ion-option value="6">{{test[6]}}</ion-option>
+    <ion-option value="7">{{test[7]}}</ion-option>
+    <ion-option value="8">{{test[8]}}</ion-option>
+    <ion-option value="9">{{test[9]}}</ion-option>
+    <ion-option value="10">{{test[10]}}</ion-option>
+    <ion-option value="11">{{test[11]}}</ion-option>
+    <ion-option value="12">{{test[12]}}</ion-option>
+    <ion-option value="13">{{test[13]}}</ion-option>
+    <ion-option value="14">{{test[14]}}</ion-option>
+    <ion-option value="15">{{test[15]}}</ion-option>
+  </ion-select>
+</ion-item>
+<button ion-button type="submit" (click)='PagePrive()'>Envoyer un message privé</button>
+<button ion-button type="submit" (click)='Test()'>Test</button>
+</ion-content>
+
+
