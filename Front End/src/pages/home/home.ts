@@ -14,6 +14,7 @@ export class HomePage {
   mdp='';
   mail='';
   calcul;
+  membres=[];
   constructor(public navCtrl: NavController, private socket: Socket, public navParams : NavParams, private alertCtrl: AlertController) {
     this.calcul = this.navParams.get('calcul');
     this.nickname = this.navParams.get('nickname');

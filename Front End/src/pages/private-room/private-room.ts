@@ -9,64 +9,49 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'private-room.html',
 })
 export class PrivateRoomPage {
-  mynickname: string;
-  nickname: string;
   messages = [];
   message: string;
+  id_ami: any;
+  pseudo_ami: any;
+  pseudo: any;
 
 
 constructor(private navCtrl: NavController, private navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
-  this.mynickname=navParams.get('mynickname');
-  this.nickname=navParams.get('nickname');
+  this.pseudo_ami=navParams.get('pseudo_ami');
+  this.id_ami=navParams.get('id_ami');
+  this.pseudo=navParams.get('pseudo');
 
-  this.getMessages().subscribe(message => {
-    console.log(message);
-    this.messages.push(message);
-  });
 
-  this.getUsers().subscribe(data => {
-    let user = this.nickname;
-    console.log(data['user']);
-    if (data['event'] === 'left') {
-      this.showToast('User left: ' + user);
-
-    } else {
-      this.showToast('User joined: ' + user);
-
-    }
-  });
-}
-
-sendMessage() {
-  this.socket.emit('private-message', { text: this.message, id_dest: this.nickname, id:this.mynickname});
-  console.log(this.message, this.nickname, this.mynickname);
-  this.message = '';
-}
-getMessages() {
-  let observable = new Observable(observer => {
-    this.socket.on('Pmessage', (data) => {
-      observer.next(data);
+    this.getMessages().subscribe(message => {
+      this.messages.push(message);
     });
-  })
 
-  return observable;
-}
-getUsers() {
-
-  let observable = new Observable(observer => {
-    this.socket.on('users-changed', (data) => {
-      observer.next(data);
+    this.getUsers().subscribe(data => {
+      let user = data['user'];
+      
     });
-  });
-  console.log(observable);
-  return observable;
-}
-showToast(msg) {
-  let toast = this.toastCtrl.create({
-    message: msg,
-    duration: 2000
-  });
-  toast.present();
-}
+  }
+
+  getMessages() {
+    let observable = new Observable(observer => {
+      this.socket.on('Pmessage', (data) => {
+        observer.next(data);
+      });
+    })
+    return observable;
+  }
+  getUsers() {
+    let observable = new Observable(observer => {
+      this.socket.on('users-changed', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
+
+  sendMessage() {
+    this.socket.emit('private-message', { text: this.message, id_dest: this.id_ami, pseudo: this.pseudo_ami });
+    this.message = '';
+  }
 
 }

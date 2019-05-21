@@ -10,6 +10,8 @@ import { TestPage } from '../pages/test/test';
 import { ChatPage } from '../pages/chat/chat';
 import { ContactPage } from '../pages/contact/contact';
 import { ContactePage } from '../pages/contacte/contacte';
+import { PrivateRoomPage } from '../pages/private-room/private-room';
+
 
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
@@ -18,7 +20,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   declarations: [
     MyApp,
     HomePage,
-    TestPage
+    TestPage,
+    PrivateRoomPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   entryComponents: [
     MyApp,
     HomePage,
-    TestPage
+    TestPage,
+    PrivateRoomPage
   ],
   providers: [
     StatusBar,

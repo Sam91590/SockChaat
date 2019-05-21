@@ -23,6 +23,7 @@ var port = process.env.PORT || 3001;
   
     socket.on('disconnect', function(){
       io.emit('users-changed', {user: socket.nickname, event: 'left'});   
+      membres.splice(membres.indexOf({ id: socket.id, pseudo: socket.nickname }), 1);
     });
    
     socket.on('set-nickname', (nickname) => {
@@ -94,6 +95,7 @@ var port = process.env.PORT || 3001;
           if(results.length>0){
             if(infos.mdp==results[0].mdp){
               io.sockets.connected[socket.id].emit('status-connexion',{status: true});
+              membres.push({ id: socket.id, nickname: infos.nickname});
 
             
           }
@@ -113,9 +115,9 @@ var port = process.env.PORT || 3001;
         console.log("2");
       });
       socket.on('private-message', (infos) => {
-        io.to(infos.id_dest).emit('Pmessage', {text: infos.text, from: infos.nickname, created:new Date()});
+        io.to(infos.id_dest).emit('Pmessage', {text: infos.text, from: infos.pseudo, created:new Date()});
         console.log("1",infos.text, infos.id_dest);
-        io.to(infos.id).emit('Pmessage', {text: infos.text, from: infos.nickname, created: new Date()});
+        io.to(socket.id).emit('Pmessage', {text: infos.text, from: socket.nickname, created: new Date()});
         console.log("2",infos.text, infos.id);
       });
 
